@@ -1,0 +1,14 @@
+.ipynb_checkpoints
+.env
+**/__pycache__/
+*.py[cod]
+*$py.class
+media
+staticfiles/
+*.tmp
+*.bak
+*.swp
+generated/*
+coverage/
+.vscode
+.vs
