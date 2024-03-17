@@ -11,22 +11,46 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import environ
+import os
+import sys
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
+env = environ.Env(
+    # Django
+    DJANGO_DEBUG=(bool, False),
+    DOCKER_HOST_IP=(str, None),
+    DJANGO_SECRET_KEY=str,
+    DJANGO_MEDIA_URL=(str, '/media/'),
+    DJANGO_MEDIA_ROOT=(str, os.path.join(BASE_DIR, 'media')),
+    DJANGO_STATIC_URL=(str, '/static/'),
+    DJANGO_STATIC_ROOT=(str, os.path.join(BASE_DIR, 'static')),
+    DJANGO_ADDITIONAL_ALLOWED_HOSTS=(list, []),
+    # Database
+    DJANGO_DB_NAME=str,
+    DJANGO_DB_USER=str,
+    DJANGO_DB_PASS=str,
+    DJANGO_DB_HOST=str,
+    DJANGO_DB_PORT=(int, 5432),
+    # Pytest (Only required when running tests)
+    PYTEST_XDIST_WORKER=(str, None),
+)
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-(kh+bc_t%wppwcg!6ey35+z+pxn4-6uv0mx@om*m0_02!knpa8'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = [
+    'localhost',
+    '0.0.0.0',
+    *env('DJANGO_ADDITIONAL_ALLOWED_HOSTS'),
+]
+SECRET_KEY = env('DJANGO_SECRET_KEY')
+DEBUG = env('DJANGO_DEBUG')
 
 # Application definition
 
@@ -37,6 +61,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # third party apps
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -75,11 +102,26 @@ WSGI_APPLICATION = 'main.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        'NAME': env('DJANGO_DB_NAME'),
+        'USER': env('DJANGO_DB_USER'),
+        'PASSWORD': env('DJANGO_DB_PASS'),
+        'HOST': env('DJANGO_DB_HOST'),
+        'PORT': env('DJANGO_DB_PORT'),
     }
 }
 
+TESTING = any([
+    arg in sys.argv for arg in [
+        'test',
+        'pytest',
+        'py.test',
+        '/usr/local/bin/pytest',
+        '/usr/local/bin/py.test',
+        '/usr/local/lib/python3.10/dist-packages/py/test.py',
+    ]
+    # Provided by pytest-xdist (If pytest is used)
+]) or env('PYTEST_XDIST_WORKER') is not None
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
