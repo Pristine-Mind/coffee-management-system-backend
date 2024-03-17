@@ -1,0 +1,36 @@
+
+[tool.poetry]
+name = "coffee management system"
+version = "0.1.0"
+description = ""
+authors = ["Pristine-Minds info@pristine-minds.com>"]
+license = "Apache License 2.0"
+
+[tool.poetry.dependencies]
+Django = "^4.2"
+django-cors-headers = "*"
+django-environ = "*"
+factory-boy = "^3.2.1"
+gunicorn = "^20.1.0"
+psycopg2 = "^2.9.3"
+python = "^3.10"
+django-enumfield = "^2.0.2"
+django-modeltranslation = "^0.17.3"
+django-phonenumber-field = {extras = ["phonenumbers"], version = "^6.0.0"}
+django-filter = "^2.2.0"
+djangorestframework = "*"
+mock = "^4.0.3"
+celery = "*"
+redis = "*"
+
+[tool.poetry.dev-dependencies]
+django-stubs = { version = "*", allow-prereleases = true }
+ipython = "*"
+pytest-django = "*"
+pytest-icdiff = "*"
+pytest-ordering = "*"
+pytest-profiling = "*"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
