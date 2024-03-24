@@ -1,12 +1,4 @@
-from rest_framework import (
-    views,
-    viewsets,
-    response,
-    permissions,
-    status,
-    mixins,
-    serializers,
-)
+from rest_framework import viewsets
 
 from coffee.models import Coffee
 from coffee.serializers import CoffeeSerializer
