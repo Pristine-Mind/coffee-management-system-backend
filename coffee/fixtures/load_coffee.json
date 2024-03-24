@@ -1,0 +1,184 @@
+[
+    {
+        "model": "coffee.coffee",
+        "pk": 1,
+        "fields": {
+            "name": "Espresso",
+            "description": "A strong, concentrated coffee made by forcing steam through finely-ground coffee beans.",
+            "price": "250",
+            "origin": "Italy",
+            "roast_type": "dark",
+            "flavor_notes": "Bold and intense flavor with a hint of sweetness.",
+            "caffeine_content": "64.0",
+            "available": true
+        }
+    },
+    {
+        "model": "coffee.coffee",
+        "pk": 2,
+        "fields": {
+            "name": "Cappuccino",
+            "description": "A classic Italian coffee drink made with equal parts espresso, steamed milk, and frothed milk.",
+            "price": "350",
+            "origin": "Italy",
+            "roast_type": "medium",
+            "flavor_notes": "Balanced flavor with creamy texture.",
+            "caffeine_content": "85.0",
+            "available": true
+        }
+    },
+    {
+        "model": "coffee.coffee",
+        "pk": 3,
+        "fields": {
+            "name": "Latte",
+            "description": "A coffee drink made with espresso and steamed milk.",
+            "price": "300",
+            "origin": "Italy",
+            "roast_type": "medium",
+            "flavor_notes": "Smooth and creamy with a hint of espresso.",
+            "caffeine_content": "75.0",
+            "available": true
+        }
+    },
+    {
+        "model": "coffee.coffee",
+        "pk": 4,
+        "fields": {
+            "name": "Mocha",
+            "description": "A coffee drink made with espresso, chocolate, and steamed milk.",
+            "price": "400",
+            "origin": "Italy",
+            "roast_type": "medium",
+            "flavor_notes": "Rich chocolate flavor with a hint of coffee.",
+            "caffeine_content": "60.0",
+            "available": true
+        }
+    },
+    {
+        "model": "coffee.coffee",
+        "pk": 5,
+        "fields": {
+            "name": "Americano",
+            "description": "A coffee drink made by diluting espresso with hot water.",
+            "price": "200",
+            "origin": "Italy",
+            "roast_type": "dark",
+            "flavor_notes": "Bold and slightly bitter flavor with a smooth finish.",
+            "caffeine_content": "120.0",
+            "available": true
+        }
+    },
+    {
+        "model": "coffee.coffee",
+        "pk": 6,
+        "fields": {
+            "name": "Flat White",
+            "description": "A coffee drink made with espresso and microfoam.",
+            "price": "450",
+            "origin": "Australia",
+            "roast_type": "medium",
+            "flavor_notes": "Creamy texture with a strong espresso flavor.",
+            "caffeine_content": "90.0",
+            "available": true
+        }
+    },
+    {
+        "model": "coffee.coffee",
+        "pk": 7,
+        "fields": {
+            "name": "Macchiato",
+            "description": "A coffee drink made with espresso and a small amount of steamed milk.",
+            "price": "300",
+            "origin": "Italy",
+            "roast_type": "dark",
+            "flavor_notes": "Strong espresso flavor with a touch of sweetness from the milk.",
+            "caffeine_content": "60.0",
+            "available": true
+        }
+    },
+    {
+        "model": "coffee.coffee",
+        "pk": 8,
+        "fields": {
+            "name": "Affogato",
+            "description": "A dessert coffee made with a scoop of vanilla ice cream topped with a shot of espresso.",
+            "price": "500",
+            "origin": "Italy",
+            "roast_type": "dark",
+            "flavor_notes": "Creamy and decadent with a strong espresso kick.",
+            "caffeine_content": "60.0",
+            "available": true
+        }
+    },
+    {
+        "model": "coffee.coffee",
+        "pk": 9,
+        "fields": {
+            "name": "Turkish Coffee",
+            "description": "A traditional method of preparing coffee using very finely ground coffee beans boiled with water and sugar.",
+            "price": "350",
+            "origin": "Turkey",
+            "roast_type": "dark",
+            "flavor_notes": "Rich and full-bodied with a thick texture.",
+            "caffeine_content": "70.0",
+            "available": true
+        }
+    },
+    {
+        "model": "coffee.coffee",
+        "pk": 10,
+        "fields": {
+            "name": "Irish Coffee",
+            "description": "A cocktail consisting of hot coffee, Irish whiskey, and sugar, stirred, and topped with cream.",
+            "price": "600",
+            "origin": "Ireland",
+            "roast_type": "medium",
+            "flavor_notes": "Warm and comforting with a kick of whiskey.",
+            "caffeine_content": "60.0",
+            "available": true
+        }
+    },
+    {
+        "model": "coffee.coffee",
+        "pk": 11,
+        "fields": {
+            "name": "Iced Coffee",
+            "description": "Chilled coffee served over ice cubes.",
+            "price": "300",
+            "origin": "Various",
+            "roast_type": "medium",
+            "flavor_notes": "Refreshing and cool with a smooth flavor.",
+            "caffeine_content": "80.0",
+            "available": true
+        }
+    },
+    {
+        "model": "coffee.coffee",
+        "pk": 12,
+        "fields": {
+            "name": "Vietnamese Iced Coffee",
+            "description": "Strong brewed coffee mixed with sweetened condensed milk and served over ice.",
+            "price": "400",
+            "origin": "Vietnam",
+            "roast_type": "dark",
+            "flavor_notes": "Sweet and creamy with a bold coffee flavor.",
+            "caffeine_content": "80.0",
+            "available": true
+        }
+    },
+    {
+        "model": "coffee.coffee",
+        "pk": 13,
+        "fields": {
+            "name": "Ristretto",
+            "description": "An espresso shot with less water, resulting in a more concentrated and intense flavor.",
+            "price": "250",
+            "origin": "Italy",
+            "roast_type": "dark",
+            "flavor_notes": "Rich and bold flavor with a smooth finish.",
+            "caffeine_content": "64.0",
+            "available": true
+        }
+    }
+]

@@ -15,8 +15,21 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.conf.urls import include
 from django.urls import path
+from django.urls import re_path as url
+
+
+from rest_framework import routers
+
+from coffee import views as coffee_views
+
+
+router = routers.DefaultRouter()
+
+router.register(r'coffee', coffee_views.CoffeeViewSet, basename='coffee')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    url(r"^api/v1/", include(router.urls)),
 ]
