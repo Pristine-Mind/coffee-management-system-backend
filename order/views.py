@@ -2,12 +2,12 @@ from django.shortcuts import render
 
 from rest_framework import viewsets
 
-from order.models import Order
-from order.serializers import OrderSerializer
+from order.models import OrderItem
+from order.serializers import OrderItemSerializer
 
 
 class OrderViewSet(viewsets.ModelViewSet):
-    serializer_class = OrderSerializer
+    serializer_class = OrderItemSerializer
 
     def get_queryset(self):
-        return Order.objects.all()
+        return OrderItem.objects.all()
