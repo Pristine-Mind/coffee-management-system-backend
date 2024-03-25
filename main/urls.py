@@ -23,11 +23,13 @@ from django.urls import re_path as url
 from rest_framework import routers
 
 from coffee import views as coffee_views
+from order import views as order_views
 
 
 router = routers.DefaultRouter()
 
 router.register(r'coffee', coffee_views.CoffeeViewSet, basename='coffee')
+router.register(r'order', order_views.OrderViewSet, basename='order')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
