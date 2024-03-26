@@ -24,6 +24,10 @@ from rest_framework import routers
 
 from coffee import views as coffee_views
 from order import views as order_views
+from customer.views import (
+    RegistrationView,
+    LoginView
+)
 
 
 router = routers.DefaultRouter()
@@ -34,4 +38,6 @@ router.register(r'order', order_views.OrderViewSet, basename='order')
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r"^api/v1/", include(router.urls)),
+    url(r"^register", RegistrationView.as_view()),
+    url(r"^login", LoginView.as_view()),
 ]

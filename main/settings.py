@@ -68,6 +68,7 @@ INSTALLED_APPS = [
     # local apps
     'coffee',
     'order',
+    'customer',
 ]
 
 MIDDLEWARE = [
