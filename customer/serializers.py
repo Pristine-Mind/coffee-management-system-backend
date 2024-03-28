@@ -10,7 +10,11 @@ class RegistrationSerializer(serializers.Serializer):
     last_name = serializers.CharField(max_length=255, write_only=True)
 
     # optional fields
-    phone_number = serializers.CharField(required=False, max_length=255, write_only=True)
+    phone_number = serializers.CharField(
+        required=False,
+        max_length=255,
+        write_only=True
+    )
 
     def validate_username(self, username):
         if User.objects.filter(username__iexact=username).exists():

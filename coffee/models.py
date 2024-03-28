@@ -3,7 +3,7 @@ from django.utils.translation import gettext_lazy as _
 
 
 class Coffee(models.Model):
-    class CoffeeRoasyType(models.TextChoices):
+    class CoffeeRoastType(models.TextChoices):
         DARK = 'dark', _('Dark')
         MEDIUM = 'medium', _('Medium')
         LIGHT = 'light', _('Light')
@@ -22,7 +22,8 @@ class Coffee(models.Model):
     )
     description = models.TextField(
         verbose_name=_('Description of coffee'),
-        null=True, blank=True
+        null=True,
+        blank=True
     )
     caffeine_content = models.DecimalField(
         verbose_name=_('Caffeine Content'),
@@ -39,7 +40,7 @@ class Coffee(models.Model):
         verbose_name=_('Roast type'),
         null=True, blank=True,
         max_length=100,
-        choices=CoffeeRoasyType.choices,
+        choices=CoffeeRoastType.choices,
     )
     flavor_notes = models.TextField(
         verbose_name=_('Flavor Notes'),

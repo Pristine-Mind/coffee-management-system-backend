@@ -168,3 +168,15 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+TESTING = any([
+    arg in sys.argv for arg in [
+        'test',
+        'pytest',
+        'py.test',
+        '/usr/local/bin/pytest',
+        '/usr/local/bin/py.test',
+        '/usr/local/lib/python3.10/dist-packages/py/test.py',
+    ]
+    # Provided by pytest-xdist (If pytest is used)
+]) or env('PYTEST_XDIST_WORKER') is not None
