@@ -24,6 +24,10 @@ class Profile(models.Model):
         null=True,
         blank=True
     )
+    address = models.CharField(
+        verbose_name=_('address'),
+        null=True, blank=True
+    )
 
     def __str__(self):
         return self.user.username

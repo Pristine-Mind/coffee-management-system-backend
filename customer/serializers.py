@@ -1,5 +1,9 @@
 from rest_framework import serializers
 
+from django.contrib.auth.models import User
+
+from order.serializers import OrderItemSerializer
+
 
 class RegistrationSerializer(serializers.Serializer):
     # required fields
@@ -14,6 +18,11 @@ class RegistrationSerializer(serializers.Serializer):
         required=False,
         max_length=255,
         write_only=True
+    )
+    address = serializers.CharField(
+        max_length=255,
+        write_only=True,
+        required=False
     )
 
     def validate_username(self, username):
@@ -30,6 +39,7 @@ class RegistrationSerializer(serializers.Serializer):
         password = self.validated_data['password']
 
         phone_number = self.validated_data.get('phone_number')
+        address = self.validated_data.get('address')
 
         # Create the User object
         try:
@@ -46,6 +56,22 @@ class RegistrationSerializer(serializers.Serializer):
 
         try:
             user.profile.phone_number = phone_number
+            user.profile.address = address
             user.profile.save()
         except Exception:
             raise serializers.ValidationError('Could not create user profile.')
+
+
+class UserSerializer(serializers.ModelSerializer):
+    address = serializers.CharField(source="profile.address", read_only=True)
+    orders = OrderItemSerializer(read_only=True, source="orderitem_set", many=True)
+
+    class Meta:
+        model = User
+        fields = (
+            "id",
+            "username",
+            "email",
+            "address",
+            "orders"
+        )

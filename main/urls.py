@@ -26,7 +26,8 @@ from coffee import views as coffee_views
 from order import views as order_views
 from customer.views import (
     RegistrationView,
-    LoginView
+    LoginView,
+    MeView
 )
 
 
@@ -40,4 +41,5 @@ urlpatterns = [
     url(r"^api/v1/", include(router.urls)),
     url(r"^register", RegistrationView.as_view()),
     url(r"^login", LoginView.as_view()),
+    url(r"^me", MeView.as_view()),
 ]

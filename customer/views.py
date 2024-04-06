@@ -7,9 +7,11 @@ from rest_framework import (
     response,
     status
 )
+from rest_framework.views import APIView
 from rest_framework.authtoken.models import Token
+from rest_framework.permissions import IsAuthenticated
 
-from .serializers import RegistrationSerializer
+from .serializers import RegistrationSerializer, UserSerializer
 
 
 def bad_request(message):
@@ -60,3 +62,13 @@ class LoginView(views.APIView):
             )
         else:
             return bad_request("Invalid username or password")
+
+
+class MeView(APIView):
+    serializer_class = UserSerializer
+    permission_classes = [IsAuthenticated, ]
+    swagger_schema = None
+
+    def get(self, request):
+        serializer = UserSerializer(request.user)
+        return response.Response(serializer.data)
