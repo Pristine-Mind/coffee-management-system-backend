@@ -11,7 +11,11 @@ from rest_framework.views import APIView
 from rest_framework.authtoken.models import Token
 from rest_framework.permissions import IsAuthenticated
 
-from .serializers import RegistrationSerializer, UserSerializer
+from .serializers import (
+    RegistrationSerializer,
+    UserSerializer,
+    SuperUserSerializer,
+)
 
 
 def bad_request(message):
@@ -70,5 +74,8 @@ class MeView(APIView):
     swagger_schema = None
 
     def get(self, request):
-        serializer = UserSerializer(request.user)
+        if request.user and request.user.is_superuser:
+            serializer = SuperUserSerializer(request.user)
+        else:
+            serializer = UserSerializer(request.user)
         return response.Response(serializer.data)

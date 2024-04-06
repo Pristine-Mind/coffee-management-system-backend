@@ -75,3 +75,25 @@ class UserSerializer(serializers.ModelSerializer):
             "address",
             "orders"
         )
+
+
+class SuperUserSerializer(serializers.ModelSerializer):
+    total_sales = serializers.SerializerMethodField()
+    total_items = serializers.SerializerMethodField()
+    total_remaining_items = serializers.SerializerMethodField()
+    class Meta:
+        model = User
+        fields = (
+            "total_sales",
+            "total_items",
+            "total_remaining_items"
+        )
+
+    def get_total_sales(self, obj):
+        pass
+
+    def get_total_items(self, obj):
+        pass
+
+    def get_total_remaining_items(self, obj):
+        pass
