@@ -1,7 +1,15 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from django.db.models.signals import m2m_changed
+from django.dispatch import receiver
 
 from coffee.models import Coffee
+
+
+class Table(models.Model):
+    name = models.CharField(
+        verbose_name=_('Name of table')
+    )
 
 
 class Order(models.Model):
@@ -10,7 +18,6 @@ class Order(models.Model):
         MEDIUM = 'medium', _('Medium')
         LARGE = 'large', _('Large')
 
-    ordered_at = models.DateTimeField(auto_now_add=True)
     coffee = models.ForeignKey(
         Coffee,
         on_delete=models.CASCADE,
@@ -54,6 +61,7 @@ class OrderItem(models.Model):
         PREPARING = 'preparing', _('Preparing')
         COMPLETED = 'completed', _('Completed')
 
+    ordered_at = models.DateTimeField(auto_now_add=True)
     order = models.ManyToManyField(Order, blank=True, verbose_name=_("Order"))
     customer = models.ForeignKey(
         'auth.User',
@@ -62,13 +70,30 @@ class OrderItem(models.Model):
         null=True,
         verbose_name=_('Customer'),
     )
+    table = models.ForeignKey(
+        Table,
+        verbose_name=_('Order of table'),
+        on_delete=models.CASCADE
+    )
     status = models.CharField(
         max_length=100,
         choices=OrderStatus.choices,
         default=OrderStatus.PENDING,
         verbose_name=_('Status')
     )
-    # TODO: Add policy to figure out price
-    # price = models.IntegerField(
-    #     verbose_name=_('Price'),
-    # )
+    price = models.IntegerField(
+        verbose_name=_('Price'),
+        null=True,
+        blank=True
+    )
+
+    def __str__(self):
+        return f'{self.table} - {self.price}'
+
+
+@receiver(m2m_changed, sender=OrderItem.order.through)
+def create_comms_group(sender, instance, action, **kwargs):
+    if action == 'post_add':
+        total_price = sum(order.coffee.price * order.quantity for order in instance.order.all())
+        instance.price = total_price
+        instance.save()

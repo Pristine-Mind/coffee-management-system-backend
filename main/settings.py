@@ -64,6 +64,7 @@ INSTALLED_APPS = [
 
     # third party apps
     'rest_framework',
+    'drf_spectacular',
 
     # local apps
     'coffee',
@@ -112,7 +113,7 @@ DATABASES = {
         'USER': env('DJANGO_DB_USER'),
         'PASSWORD': env('DJANGO_DB_PASS'),
         'HOST': env('DJANGO_DB_HOST'),
-        'PORT': env('DJANGO_DB_PORT'),
+        'PORT': '5432',
     }
 }
 
@@ -180,3 +181,15 @@ TESTING = any([
     ]
     # Provided by pytest-xdist (If pytest is used)
 ]) or env('PYTEST_XDIST_WORKER') is not None
+
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'COFFEE',
+    'DESCRIPTION': 'COFFEE API Documenation',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+}

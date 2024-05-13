@@ -1,0 +1,44 @@
+[
+    {
+        "model": "order.table",
+        "pk": 1,
+        "fields": {
+            "name": "Table 1"
+        }
+    },
+    {
+        "model": "order.table",
+        "pk": 2,
+        "fields": {
+            "name": "Table 2"
+        }
+    },
+    {
+        "model": "order.table",
+        "pk": 3,
+        "fields": {
+            "name": "Table 3"
+        }
+    },
+    {
+        "model": "order.table",
+        "pk": 4,
+        "fields": {
+            "name": "Table 4"
+        }
+    },
+    {
+        "model": "order.table",
+        "pk": 5,
+        "fields": {
+            "name": "Table 5"
+        }
+    },
+    {
+        "model": "order.table",
+        "pk": 6,
+        "fields": {
+            "name": "Table 6"
+        }
+    }
+]

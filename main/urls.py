@@ -19,8 +19,8 @@ from django.conf.urls import include
 from django.urls import path
 from django.urls import re_path as url
 
-
 from rest_framework import routers
+from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
 
 from coffee import views as coffee_views
 from order import views as order_views
@@ -35,6 +35,7 @@ router = routers.DefaultRouter()
 
 router.register(r'coffee', coffee_views.CoffeeViewSet, basename='coffee')
 router.register(r'order', order_views.OrderViewSet, basename='order')
+router.register(r'table', order_views.TableViewSet, basename='table')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -42,4 +43,8 @@ urlpatterns = [
     url(r"^register", RegistrationView.as_view()),
     url(r"^login", LoginView.as_view()),
     url(r"^me", MeView.as_view()),
+    # Docs
+    path("docs/", SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
+    path("api-docs/", SpectacularAPIView.as_view(), name='schema'),
+    path("api-docs/swagger-ui/", SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
 ]

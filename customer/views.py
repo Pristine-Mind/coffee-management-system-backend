@@ -10,11 +10,13 @@ from rest_framework import (
 from rest_framework.views import APIView
 from rest_framework.authtoken.models import Token
 from rest_framework.permissions import IsAuthenticated
+from drf_spectacular.utils import extend_schema
 
 from .serializers import (
     RegistrationSerializer,
     UserSerializer,
     SuperUserSerializer,
+    LoginSerializer
 )
 
 
@@ -22,6 +24,10 @@ def bad_request(message):
     return JsonResponse({"statusCode": 400, "error_message": message}, status=400)
 
 
+@extend_schema(
+    request=None,
+    responses=RegistrationSerializer
+)
 class RegistrationView(views.APIView):
 
     def post(self, request, version=None):
@@ -33,6 +39,10 @@ class RegistrationView(views.APIView):
         )
 
 
+@extend_schema(
+    request=None,
+    responses=LoginSerializer
+)
 class LoginView(views.APIView):
     permission_classes = []
 

@@ -9,7 +9,7 @@ class RegistrationSerializer(serializers.Serializer):
     # required fields
     email = serializers.EmailField(max_length=255)
     username = serializers.CharField(max_length=255)
-    password = serializers.CharField(max_length=255, write_only=True)
+    password = serializers.CharField(max_length=255)
     first_name = serializers.CharField(max_length=255, write_only=True)
     last_name = serializers.CharField(max_length=255, write_only=True)
 
@@ -32,7 +32,7 @@ class RegistrationSerializer(serializers.Serializer):
 
     def save(self):
         # using email as username for user registration
-        username = self.validated_data['email']
+        username = self.validated_data['username']
         first_name = self.validated_data['first_name']
         last_name = self.validated_data['last_name']
         email = self.validated_data['email']
@@ -81,6 +81,7 @@ class SuperUserSerializer(serializers.ModelSerializer):
     total_sales = serializers.SerializerMethodField()
     total_items = serializers.SerializerMethodField()
     total_remaining_items = serializers.SerializerMethodField()
+
     class Meta:
         model = User
         fields = (
@@ -97,3 +98,8 @@ class SuperUserSerializer(serializers.ModelSerializer):
 
     def get_total_remaining_items(self, obj):
         pass
+
+
+class LoginSerializer(serializers.Serializer):
+    username = serializers.CharField(max_length=255)
+    password = serializers.CharField(max_length=255)
