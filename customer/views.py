@@ -1,5 +1,7 @@
 from django.http import JsonResponse, HttpResponse
 from django.contrib.auth import authenticate
+from django.utils import timezone
+from datetime import timedelta
 
 from rest_framework import (
     viewsets,
@@ -61,8 +63,8 @@ class LoginView(views.APIView):
                 api_key.save()
 
             # (Re)set the user's last frontend login datetime
-            user.profile.last_frontend_login = timezone.now()
-            user.profile.save()
+            # user.profile.last_frontend_login = timezone.now()
+            # user.profile.save()
 
             return JsonResponse(
                 {

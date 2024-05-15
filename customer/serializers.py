@@ -28,7 +28,7 @@ class RegistrationSerializer(serializers.Serializer):
     def validate_username(self, username):
         if User.objects.filter(username__iexact=username).exists():
             raise serializers.ValidationError('A user with that username already exists.')
-        return email
+        return username
 
     def save(self):
         # using email as username for user registration
@@ -53,13 +53,6 @@ class RegistrationSerializer(serializers.Serializer):
             )
         except Exception:
             raise serializers.ValidationError('Could not create user.')
-
-        try:
-            user.profile.phone_number = phone_number
-            user.profile.address = address
-            user.profile.save()
-        except Exception:
-            raise serializers.ValidationError('Could not create user profile.')
 
 
 class UserSerializer(serializers.ModelSerializer):

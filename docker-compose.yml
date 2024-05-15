@@ -27,6 +27,8 @@ x-server: &base_server_setup
 services:
   db:
     image: postgis/postgis:13-3.1-alpine
+    ports:
+      - "5431:5432"
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
@@ -45,7 +47,7 @@ services:
   web:
     <<: *base_server_setup
     ports:
-      - 8000:8000
+      - "8000:8000"
     command: python manage.py runserver 0.0.0.0:8000
 
 volumes:
