@@ -9,4 +9,3 @@ class CoffeeViewSet(viewsets.ReadOnlyModelViewSet):
 
     def get_queryset(self):
         return Coffee.objects.all()
-

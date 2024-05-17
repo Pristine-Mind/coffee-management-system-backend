@@ -1,10 +1,9 @@
-from django.http import JsonResponse, HttpResponse
+from django.http import JsonResponse
 from django.contrib.auth import authenticate
 from django.utils import timezone
 from datetime import timedelta
 
 from rest_framework import (
-    viewsets,
     views,
     response,
     status
@@ -18,12 +17,18 @@ from .serializers import (
     RegistrationSerializer,
     UserSerializer,
     SuperUserSerializer,
-    LoginSerializer
+    LoginSerializer,
 )
 
 
 def bad_request(message):
-    return JsonResponse({"statusCode": 400, "error_message": message}, status=400)
+    return JsonResponse(
+        {
+            "statusCode": 400,
+            "error_message": message
+        },
+        status=400
+    )
 
 
 @extend_schema(

@@ -1,15 +1,32 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from django.db.models.signals import m2m_changed
+from django.db.models.signals import m2m_changed, post_save
 from django.dispatch import receiver
 
 from coffee.models import Coffee
 
 
 class Table(models.Model):
+    class Status(models.TextChoices):
+        VACANT = 'vacant', _('Vacant')
+        OCCUPIED = 'occupied', _('Occupied')
+
     name = models.CharField(
         verbose_name=_('Name of table')
     )
+    status = models.CharField(
+        verbose_name=_('Table Status'),
+        max_length=255,
+        choices=Status.choices,
+        default=Status.VACANT,
+    )
+    is_paid = models.BooleanField(
+        verbose_name=_('Is price paid for table'),
+        default=False
+    )
+
+    def __str__(self):
+        return f'{self.name} - {self.get_status_display()}'
 
 
 class Order(models.Model):
@@ -97,3 +114,10 @@ def create_comms_group(sender, instance, action, **kwargs):
         total_price = sum(order.coffee.price * order.quantity for order in instance.order.all())
         instance.price = total_price
         instance.save()
+
+
+@receiver(post_save, sender=OrderItem)
+def update_table_status(sender, instance, **kwargs):
+    if instance.price:
+        instance.table.status = Table.Status.OCCUPIED
+        instance.table.save()

@@ -20,7 +20,11 @@ from django.urls import path
 from django.urls import re_path as url
 
 from rest_framework import routers
-from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
+from drf_spectacular.views import (
+    SpectacularAPIView,
+    SpectacularRedocView,
+    SpectacularSwaggerView,
+)
 
 from coffee import views as coffee_views
 from order import views as order_views
