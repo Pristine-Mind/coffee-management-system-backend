@@ -27,7 +27,7 @@ class OrderViewSet(viewsets.ModelViewSet):
 
 class TableViewSet(viewsets.ModelViewSet):
     serializer_class = TableSerializer
-    #permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
         return Table.objects.all()

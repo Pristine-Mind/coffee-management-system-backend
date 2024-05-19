@@ -68,12 +68,15 @@ INSTALLED_APPS = [
     'rest_framework',
     'drf_spectacular',
     'django_filters',
+    'rest_framework.authtoken',
+    'rangefilter',
 
     # local apps
     'coffee',
     'order',
     'customer',
-    'rest_framework.authtoken',
+    'inventory',
+
 ]
 
 MIDDLEWARE = [
@@ -165,7 +168,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_URL = '/media/'
+STATIC_URL = "/staticfiles/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
