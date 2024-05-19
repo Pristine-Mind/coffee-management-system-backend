@@ -18,7 +18,7 @@ class CustomPagination(pagination.LimitOffsetPagination):
 class OrderViewSet(viewsets.ModelViewSet):
     serializer_class = OrderItemSerializer
     filterset_class = OrderItemFilterSet
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
     pagination_class = CustomPagination
 
     def get_queryset(self):
@@ -27,7 +27,7 @@ class OrderViewSet(viewsets.ModelViewSet):
 
 class TableViewSet(viewsets.ModelViewSet):
     serializer_class = TableSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
         return Table.objects.all()

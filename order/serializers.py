@@ -7,11 +7,16 @@ from main.writable_nested_serializers import (
     NestedCreateMixin,
     NestedUpdateMixin,
 )
+from coffee.serializers import  CoffeeSerializer
 
 
 class OrderSerializer(serializers.ModelSerializer):
     size_display = serializers.CharField(
         source='get_size_display',
+        read_only=True
+    )
+    coffee_details = CoffeeSerializer(
+        source='coffee',
         read_only=True
     )
 

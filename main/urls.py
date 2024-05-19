@@ -34,7 +34,6 @@ from customer.views import (
     MeView
 )
 
-
 router = routers.DefaultRouter()
 
 router.register(r'coffee', coffee_views.CoffeeViewSet, basename='coffee')
@@ -46,9 +45,15 @@ urlpatterns = [
     url(r"^api/v1/", include(router.urls)),
     url(r"^register", RegistrationView.as_view()),
     url(r"^login", LoginView.as_view()),
-    url(r"^me", MeView.as_view()),
+    # url(r"^me", MeView.as_view()),
     # Docs
     path("docs/", SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
     path("api-docs/", SpectacularAPIView.as_view(), name='schema'),
     path("api-docs/swagger-ui/", SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
 ]
+
+from django.conf.urls.static import static
+from django.conf import settings
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
