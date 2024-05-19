@@ -24,6 +24,7 @@ celery = "*"
 redis = "*"
 drf-spectacular = "*"
 django-admin-rangefilter = "*"
+django-read-only = "==1.12.0"
 
 [tool.poetry.dev-dependencies]
 django-stubs = { version = "*", allow-prereleases = true }

@@ -358,6 +358,20 @@ phonenumbers = ["phonenumbers (>=7.0.2)"]
 phonenumberslite = ["phonenumberslite (>=7.0.2)"]
 
 [[package]]
+name = "django-read-only"
+version = "1.12.0"
+description = "Disable Django database writes."
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "django_read_only-1.12.0-py3-none-any.whl", hash = "sha256:4938012353ed36da6e05994176b580889f6da4242f11e3c73357e038c95e2984"},
+    {file = "django_read_only-1.12.0.tar.gz", hash = "sha256:1d06cfcde14d91732b65c161dbef2603442593e9bdca6043350df3fa9aa51d43"},
+]
+
+[package.dependencies]
+Django = ">=3.2"
+
+[[package]]
 name = "django-stubs"
 version = "5.0.0"
 description = "Mypy stubs for Django"
@@ -1382,4 +1396,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "428b8a6c439a1d48d62fef8e3e6478f5caeda154e83e8fc66730abb1c14aadcf"
+content-hash = "661bbccf8467d638d444de2489182b364c0b0c141165ca9b5d9eb99dd5269a90"
