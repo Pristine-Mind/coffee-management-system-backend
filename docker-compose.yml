@@ -22,7 +22,6 @@ x-server: &base_server_setup
     - .:/code
   depends_on:
     - db
-    - redis
 
 services:
   db:
@@ -39,16 +38,8 @@ services:
       timeout: 5s
       retries: 5
 
-  redis:
-    image: redis:latest
-    volumes:
-      - redis-data:/data
-
   web:
     <<: *base_server_setup
     ports:
       - "8000:8000"
-    command: python manage.py runserver 0.0.0.0:8000
-
-volumes:
-  redis-data:
+    command: bash -c "/code/scripts/run_develop.sh"
