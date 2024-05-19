@@ -198,6 +198,7 @@ REST_FRAMEWORK = {
         'rest_framework.filters.OrderingFilter',
     ),
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+    'EXCEPTION_HANDLER': 'main.exception_handler.custom_exception_handler',
 }
 
 SPECTACULAR_SETTINGS = {
